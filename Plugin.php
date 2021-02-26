@@ -51,11 +51,11 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 			switch ($_GET['action']) {
 				case 'replace':
 					$success = $success && rename("${G}admin${F}file-upload.php", "${G}admin${F}file-upload.php.old");
-					$success = $success && copy("${R}admin${F}file-upload.php", "${G}admin${F}file-upload.php");
+					$success = $success && copy("${R}static${F}file-upload.php", "${G}admin${F}file-upload.php");
 					break;
 				case 'restore':
 					$success = $success && unlink("${G}admin${F}file-upload.php");
-					$success = $success && rename("${G}admin${F}file-upload.php.old", "${G}admin${F}file-upload.php");
+					$success = $success && rename("${G}static${F}file-upload.php.old", "${G}admin${F}file-upload.php");
 					break;
 			}
 			if ($success) {
