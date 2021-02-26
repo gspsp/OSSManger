@@ -80,8 +80,6 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 		$selfDomain = new Typecho_Widget_Helper_Form_Element_Text('selfDomain', null, null, _t('selfDomain:'));
 		$form->addInput($selfDomain);
 
-		$form->addInput(new Title_Plugin('btnTitle', NULL, NULL, _t('挂载'), NULL));
-
 		$replaceBtn = new Typecho_Widget_Helper_Form_Element_Submit();
 		$replaceBtn->value(_t('替换file-upload.php'));
 		$replaceBtn->description(_t('通常只需要在第一次启用插件的时候，手动点击该按钮。'));
