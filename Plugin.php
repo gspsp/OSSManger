@@ -28,6 +28,7 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 			copy("${R}file-upload.php", "${G}admin${F}file-upload.php");
 		}
 		Typecho_Plugin::factory('admin/menu.php')->navBar = array('OSSManger_Plugin', 'render');
+		return _t("插件启用成功，请前往设置填写OSS信息");
 	}
 
 	/**
@@ -55,18 +56,11 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 	 */
 	public static function config(Typecho_Widget_Helper_Form $form)
 	{
-		//https://oss.console.aliyun.com/bucket/oss-cn-beijing/lsky-sp/object
-		$region = new Typecho_Widget_Helper_Form_Element_Text('region', null, null, _t('region:'));
-		$form->addInput($region->addRule('required', _t('不能为空！')));
+		$adress = new Typecho_Widget_Helper_Form_Element_Text('adress', null, null, _t('adress:'), _t("该OSS在线文件管理的url，形如https://oss.console.aliyun.com/bucket/oss-cn-beijing/lsky-sp/object"));
+		$form->addInput($adress->addRule('required', _t('不能为空！')));
 
-		$accessKeyId = new Typecho_Widget_Helper_Form_Element_Text('accessKeyId', null, null, _t('accessKeyId:'));
-		$form->addInput($accessKeyId->addRule('required', _t('不能为空！')));
-
-		$accessKeySecret = new Typecho_Widget_Helper_Form_Element_Text('accessKeySecret', null, null, _t('accessKeySecret:'));
-		$form->addInput($accessKeySecret->addRule('required', _t('不能为空！')));
-
-		$bucket = new Typecho_Widget_Helper_Form_Element_Text('bucket', null, null, _t('bucket:'));
-		$form->addInput($bucket->addRule('required', _t('不能为空！')));
+		$accessKey = new Typecho_Widget_Helper_Form_Element_Text('accessKey', null, null, _t('accessKey:'), _t("IDd+空格+Secret"));
+		$form->addInput($accessKey->addRule('required', _t('不能为空！')));
 
 		$selfDomain = new Typecho_Widget_Helper_Form_Element_Text('selfDomain', null, null, _t('selfDomain:'));
 		$form->addInput($selfDomain);
@@ -92,17 +86,23 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 	public static function render()
 	{
 		$opt = Typecho_Widget::widget('Widget_Options')->plugin('OSSManger');
+		@preg_match_all('#https://oss.console.aliyun.com/bucket/(.+?)/(.+?)/object#', $opt->adress, $matches);
+		@$region = $matches[1][0];
+		@$bucket = $matches[2][0];
+		@preg_match_all('#(.+?) (.+)#', $opt->accessKey, $matches);
+		@$accessKeyId = $matches[1][0];
+		@$accessKeySecret = $matches[2][0];
 		echo
 		<<<eof
-        <script type="text/javascript">
-            const OSSConfig={
-                region: '$opt->region',
-                accessKeyId: '$opt->accessKeyId',
-                accessKeySecret: '$opt->accessKeySecret',
-                bucket: '$opt->bucket',
-                selfDomain: '$opt->selfDomain'
-            }
-        </script>
+      <script type="text/javascript">
+        const OSSConfig={
+          region: '$region',
+          accessKeyId: '$accessKeyId',
+          accessKeySecret: '$accessKeySecret',
+          bucket: '$bucket',
+          selfDomain: '$opt->selfDomain'
+        }
+      </script>
 eof;
 	}
 }
