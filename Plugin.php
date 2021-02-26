@@ -62,7 +62,7 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 		$accessKey = new Typecho_Widget_Helper_Form_Element_Text('accessKey', null, null, _t('accessKey:'), _t("IDd+空格+Secret"));
 		$form->addInput($accessKey->addRule('required', _t('不能为空！')));
 
-		$selfDomain = new Typecho_Widget_Helper_Form_Element_Text('selfDomain', null, null, _t('selfDomain:'));
+		$selfDomain = new Typecho_Widget_Helper_Form_Element_Text('selfDomain', null, null, _t('selfDomain:'),_t("自有域名，形如https://baidu.cn/,不使用则不填"));
 		$form->addInput($selfDomain);
 	}
 
