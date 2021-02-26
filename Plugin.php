@@ -114,7 +114,7 @@ class OSSManger_Plugin implements Typecho_Plugin_Interface
 	 */
 	public static function render()
 	{
-		$opt = Typecho_Widget::widget('Widget_Options')->plugin('HelloWorld');
+		$opt = Typecho_Widget::widget('Widget_Options')->plugin('OSSManger');
 		echo
 		<<<eof
         <script type="text/javascript">
