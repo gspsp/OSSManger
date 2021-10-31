@@ -40,9 +40,9 @@ if (isset($post) || isset($page)) {
       </table>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/gspsp/bin/vue/dist/vue.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gspsp/bin/vue-clipboard2/dist/vue-clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gspsp/bin/ali-oss/dist/aliyun-oss-sdk.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-clipboard2/dist/vue-clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ali-oss/dist/aliyun-oss-sdk.min.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
       let vue = new Vue({
         el: '#app',
