@@ -8,7 +8,7 @@ if (isset($post) || isset($page)) {
     Typecho_Widget::widget('Widget_Contents_Attachment_Related', 'parentId=' . $cid)->to($attachment);
 ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/gspsp/bin/self/self.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/gspsp/bin/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" />
     <div id="app">
       <hr :style="'margin: 5px 0;width: '+process+'%;'">
       <button @click="Reverse()" type="button">反选</button>
